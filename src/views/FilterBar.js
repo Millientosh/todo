@@ -1,15 +1,15 @@
-import React from 'react';
-import hypereact from '../services/hypereact';
-import FilterTodo from '../actions/FilterTodo';
-import { Menu, Icon, Badge } from 'antd';
-import Logout from '../actions/Logout';
-import styled from 'styled-components';
-import { mobileDevice } from '../services/responsive';
+import React from "react";
+import hypereact from "../services/hypereact";
+import FilterTodo from "../actions/FilterTodo";
+import { Menu, Icon, Badge } from "antd";
+import Logout from "../actions/Logout";
+import styled from "styled-components";
+import { mobileDevice } from "../services/responsive";
 import {
   allTodosSelector,
   doneTodosSelector,
   activeTodosSelector
-} from '../services/selectors';
+} from "../services/selectors";
 
 const StyledBadge = styled(Badge)`
   @media ${mobileDevice} {
@@ -42,9 +42,9 @@ export function render(props) {
     <Menu
       mode="horizontal"
       selectedKeys={[filter]}
-      style={{ lineHeight: '64px', float: 'right' }}
+      style={{ lineHeight: "64px", float: "right" }}
     >
-      <Menu.Item key="all" onClick={filterAll}>
+      {/* <Menu.Item key="all" onClick={filterAll}>
         All
         <StyledBadge
           count={allCount}
@@ -71,14 +71,14 @@ export function render(props) {
           <Icon type="poweroff" />
           <span>Logout ({username})</span>
         </StyledLogout>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   );
 }
 
 export default hypereact({
   actions: [FilterTodo, Logout],
-  state: state => {
+  state: (state) => {
     const { filter, username } = state;
     return {
       filter,
@@ -93,9 +93,9 @@ export default hypereact({
   dispatch: (props, filterTodo, logout) => ({
     logout,
     // define shorthands for filtering actions
-    filterAll: () => filterTodo('all'),
-    filterActive: () => filterTodo('active'),
-    filterDone: () => filterTodo('done')
+    filterAll: () => filterTodo("all"),
+    filterActive: () => filterTodo("active"),
+    filterDone: () => filterTodo("done")
   }),
   render
 });

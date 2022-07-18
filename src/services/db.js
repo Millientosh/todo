@@ -7,22 +7,23 @@ firebase.initializeApp({
   projectId: "base-3497f"
 });
 
+const hui = "hui";
 const db = firebase.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
 export function addTodo(collection, id, data) {
-  return db.collection(collection).doc(id).set(data);
+  return db.collection(hui).doc(id).set(data);
 }
 
 export function getTodos(collection) {
-  return db.collection(collection).get();
+  return db.collection(hui).get();
 }
 
 export function updateTodo(collection, id, data) {
-  return db.collection(collection).doc(id).update(data);
+  return db.collection(hui).doc(id).update(data);
 }
 
 export function deleteTodo(collection, id) {
-  return db.collection(collection).doc(id).delete();
+  return db.collection(hui).doc(id).delete();
 }

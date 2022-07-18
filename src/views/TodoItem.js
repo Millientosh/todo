@@ -1,10 +1,10 @@
-import React from 'react';
-import { Icon, Form, Input, Button, Row, Col, Switch } from 'antd';
-import hypereact from '../services/hypereact';
-import SaveTodo from '../actions/SaveTodo';
-import RemoveTodo from '../actions/RemoveTodo';
-import styled from 'styled-components';
-import { mobileDevice } from '../services/responsive';
+import React from "react";
+import { Icon, Form, Input, Button, Row, Col, Switch } from "antd";
+import hypereact from "../services/hypereact";
+import SaveTodo from "../actions/SaveTodo";
+import RemoveTodo from "../actions/RemoveTodo";
+import styled from "styled-components";
+import { mobileDevice } from "../services/responsive";
 
 const DoneFormItem = styled(Form.Item)`
   @media ${mobileDevice} {
@@ -42,8 +42,9 @@ const FormActions = styled(Form.Item)`
   }
 `;
 
-const TodoContents = styled(Input.TextArea)`
-  height: calc(100vh - 230px) !important;
+const TodoContents = styled(Input)`
+  /* height: calc(100vh - 230px) !important; */
+  height: 2rem !important;
   @media ${mobileDevice} {
     height: 400px !important;
   }
@@ -74,22 +75,23 @@ export function render(props) {
       <Row gutter={16}>
         <Col md={12} sm={24}>
           <Form.Item>
-            {getFieldDecorator('title', {
+            {getFieldDecorator("title", {
               initialValue: title,
-              rules: [{ required: true, message: 'Please input title' }]
+              rules: [{ required: true, message: "Введи телефон" }]
             })(
               <Input
+                onKeyUp={handleSubmit}
                 prefix={
-                  <Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />
+                  <Icon type="phone" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
                 autoFocus={true}
-                placeholder="Title"
+                placeholder="Телефон"
               />
             )}
           </Form.Item>
         </Col>
         <Col md={4} sm={8}>
-          <DoneFormItem
+          {/* <DoneFormItem
             label="Done"
             labelCol={{ md: 12 }}
             wrapperCol={{ md: 12 }}
@@ -98,28 +100,27 @@ export function render(props) {
               initialValue: done,
               valuePropName: 'checked'
             })(<Switch />)}
-          </DoneFormItem>
+          </DoneFormItem> */}
         </Col>
-        <Col md={8} sm={16} style={{ textAlign: 'right' }}>
+        <Col md={8} sm={16} style={{ textAlign: "right" }}>
           <FormActions>
             <Button type="primary" htmlType="submit">
               <Icon type="save" />
-              Save
-            </Button>{' '}
+            </Button>{" "}
             <Button type="danger" onClick={remove}>
               <Icon type="delete" />
-              Delete
             </Button>
           </FormActions>
         </Col>
       </Row>
       <Form.Item>
-        {getFieldDecorator('contents', {
+        {getFieldDecorator("contents", {
           initialValue: contents
         })(
           <TodoContents
-            prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            placeholder="Contents"
+            onChange={handleSubmit}
+            prefix={<Icon type="edit" style={{ color: "rgba(0,0,0,.25)" }} />}
+            placeholder="Имя"
           />
         )}
       </Form.Item>
@@ -136,7 +137,7 @@ export default hypereact({
   }),
   actions: [SaveTodo, RemoveTodo],
   dispatch: (props, saveTodo, removeTodo) => ({
-    save: data => saveTodo(props.id, data),
+    save: (data) => saveTodo(props.id, data),
     remove: () => removeTodo(props.id)
   }),
   render: Form.create({

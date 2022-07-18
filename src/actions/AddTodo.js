@@ -1,14 +1,14 @@
-import hypereact from '../services/hypereact';
-import uuid from 'uuid';
-import update from 'immhelper';
-import { addTodo as DbAddTodo } from '../services/db';
+import hypereact from "../services/hypereact";
+import uuid from "uuid";
+import update from "immhelper";
+import { addTodo as DbAddTodo } from "../services/db";
 
 export const dispatch = () => (state, dbAddTodo) => {
   const id = uuid();
   const todo = {
-    title: 'New Todo',
-    contents: 'New Todo contents',
-    done: false
+    title: "+7",
+    contents: ""
+    // done: false
   };
 
   // call firestore
@@ -17,11 +17,11 @@ export const dispatch = () => (state, dbAddTodo) => {
   // update state with specified specs
   return update(state, {
     // mark new todo as currently editing
-    selectedId: ['set', id],
+    selectedId: ["set", id],
     // add new id to list
-    ids: ['push', id],
+    ids: ["push", id],
     // add new todo object to map
-    todos: ['set', id, todo]
+    todos: ["set", id, todo]
   });
 };
 

@@ -1,14 +1,14 @@
-import React from 'react';
-import hypereact from '../services/hypereact';
-import styled from 'styled-components';
-import ToggleSidebar from '../actions/ToggleSidebar';
-import 'antd/dist/antd.css';
-import TodoList from './TodoList';
-import TodoItem from './TodoItem';
-import FilterBar from './FilterBar';
-import { mobileDevice } from '../services/responsive';
-import { Layout, Icon } from 'antd';
-import SearchBox from './SearchBox';
+import React from "react";
+import hypereact from "../services/hypereact";
+import styled from "styled-components";
+import ToggleSidebar from "../actions/ToggleSidebar";
+import "antd/dist/antd.css";
+import TodoList from "./TodoList";
+import TodoItem from "./TodoItem";
+import FilterBar from "./FilterBar";
+import { mobileDevice } from "../services/responsive";
+import { Layout, Icon } from "antd";
+import SearchBox from "./SearchBox";
 const { Header, Content, Sider } = Layout;
 
 const Wrapper = styled.div`
@@ -23,19 +23,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const Logo = styled.div`
-  height: 32px;
-  line-height: 32px;
-  margin: 14px;
-  margin-left: 30px;
-  font-variant: small-caps;
-  font-family: arial;
-  font-size: 22px;
-  color: white;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
+// const Logo = styled.div`
+//   height: 32px;
+//   line-height: 32px;
+//   margin: 14px;
+//   margin-left: 30px;
+//   font-variant: small-caps;
+//   font-family: arial;
+//   font-size: 22px;
+//   color: white;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+// `;
 
 const StyledContent = styled(Content)`
   margin: 24px 16px;
@@ -69,10 +69,8 @@ const SiderTrigger = styled.div`
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
-  display: ${
-    // make sure that user can click on trigger if it is collapsed
-    props => (props.collapsed ? 'block' : 'none')
-  };
+  display: ${// make sure that user can click on trigger if it is collapsed
+  (props) => (props.collapsed ? "block" : "none")};
 
   @media ${mobileDevice} {
     display: block;
@@ -80,7 +78,7 @@ const SiderTrigger = styled.div`
 `;
 
 const SearchBoxWrapper = styled.div`
-  margin: 0 10px;
+  margin: 1rem;
 `;
 
 export function render({
@@ -92,7 +90,7 @@ export function render({
 }) {
   return (
     <Wrapper>
-      <Layout style={{ height: '100%' }}>
+      <Layout style={{ height: "100%" }}>
         <StyledSider
           collapsedWidth={0}
           trigger={null}
@@ -100,19 +98,19 @@ export function render({
           collapsed={sidebarCollapsed}
         >
           <SiderTrigger onClick={toggleSidebar} collapsed={sidebarCollapsed}>
-            <Icon type={sidebarCollapsed ? 'menu-unfold' : 'menu-fold'} />
+            <Icon type={sidebarCollapsed ? "menu-unfold" : "menu-fold"} />
           </SiderTrigger>
 
-          <Logo collapsed={sidebarCollapsed}>
+          {/* <Logo collapsed={sidebarCollapsed}>
             {sidebarCollapsed ? 'Todo' : 'Todo App'}
-          </Logo>
+          </Logo> */}
           <SearchBoxWrapper>
             <SearchBox />
           </SearchBoxWrapper>
           {!sidebarCollapsed && <TodoList />}
         </StyledSider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header style={{ background: "#fff", padding: 0 }}>
             <FilterBar />
           </Header>
           <StyledContent>

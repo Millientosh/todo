@@ -1,7 +1,7 @@
-import React from 'react';
-import hypereact from '../services/hypereact';
-import SearchTodo from '../actions/SearchTodo';
-import { Input } from 'antd';
+import React from "react";
+import hypereact from "../services/hypereact";
+import SearchTodo from "../actions/SearchTodo";
+import { Input } from "antd";
 
 export function render(props) {
   const { searchTerm, searchTodo } = props;
@@ -13,7 +13,7 @@ export function render(props) {
   return (
     <Input
       value={searchTerm}
-      placeholder="Search todo..."
+      placeholder="Введи телефон..."
       onChange={handleChange}
     />
   );
